@@ -2,6 +2,8 @@ package com.crmimpl.tool;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import com.amdocs.aif.consumer.ConsumerUtil;
 import com.amdocs.aif.consumer.ResourceDesc;
@@ -33,11 +35,14 @@ public class XAifAnalyzeItemXB extends XBeanImpl {
 	@Override
 	protected void preExecute(BoContext arg0) {
 		try {
-			if (item.contains("Class")) {
+			if (item.contains("Type -> ")) {
 				ArrayList<ClassDetails> arl = new ArrayList<ClassDetails>();
-
-				Method[] methods = Class.forName(item.replace("Class -> ", ""))
-						.getDeclaredMethods();
+				String clazzName = item.replace("Type -> ", "");
+				if(clazzName.endsWith("[]")){
+					clazzName = clazzName.substring(0,clazzName.length()-2);
+				}
+				
+				Method[] methods = Class.forName(clazzName).getDeclaredMethods();
 				ClassDetails clsdtl = null;
 				for (int i = 0; i < methods.length; i++) {
 					String methodName = methods[i].getName();
