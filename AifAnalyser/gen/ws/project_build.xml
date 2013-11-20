@@ -1,0 +1,242 @@
+<project name="ws-project-build" basedir="." default="all">
+	<description>
+	This build file generate web service(s) and depoly/undeply to awsi web application.
+	Targets:
+	    - all
+	 	  - gen
+		  - deploy
+	    - undeploy
+	</description>
+	
+	<!-- generation jvmargs defenitions overided by system property -->
+	<property name="aif.ws.gen.jvmargs" value=""/>
+	<property name="aif.ws.gen.client.jvmargs" value=""/>
+	
+	<property name="root.dir" value="${basedir}" />
+	<property name="gen.dir" value="${root.dir}"/>
+
+	<property name="asc.file" value="/AifAnalyser/aifconfig/root.conf"/>
+    <property name="asc.node" value="/AifProject/Aif"/>	
+	
+	<property name="awsi.war.location" value="" />
+	<pathconvert property="precopied.war.location">
+		<fileset dir="${gen.dir}" includes="*.war" />
+	</pathconvert>
+	<available  property="found.awsi.war"     file="${awsi.war.location}"      type="file" />
+	<available  property="precopied.awsi.war" file="${precopied.war.location}" type="file" />
+	
+	<path id="cp">
+	  <!-- auto generated classpath -->
+	  <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\bin" />
+	  <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\AmdocsAif.jar" />
+	  <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\crm-h2-dbdata_778.jar" />
+	  <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\crm-junit4-v1.0.44.jar" />
+	  <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\AmdocsCore.jar" />
+	  <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\ClfyXvo.jar" />
+	  <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\UIFCommon.jar" />
+	  <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\ClfyWebInf.jar" />
+	  <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\ClfyCore.jar" />
+	  <pathelement location="C:\Users\arai\workspace\TKSBE\ClfyAgent\xml-apis.jar" />
+	  <pathelement location="C:\Users\arai\workspace\TKSBE\ClfyAgent\acfglib.jar" />
+	</path>
+	
+	<taskdef name="awsitasks" classname="amdocs.awsi.war.ant.AwsiTasks" classpathref="cp" />
+	<awsitasks />
+	<taskdef name="wsdl_jmsbinder" classname="com.amdocs.aif.tools.ant.WsdlJMSBinder" classpathref="cp"/>
+	
+	
+	<target name="missing-war-to-copy" unless="found.awsi.war">
+	   <echo>
+	   ****************************************************************************
+	   **  Missing or invalid AWSI web application archive locatiion.            **
+	   **  You must set a valid location in the project settings and regenerate. **
+	   ****************************************************************************
+	   </echo>
+	</target>
+	
+	<target name="copy-war" depends="missing-war-to-copy" >
+		<copy file="${awsi.war.location}" todir="${gen.dir}" overwrite="true"></copy>
+	</target>
+	
+	<target name="validate-war" depends="copy-war" >
+	        <pathconvert property="copied.war.location">
+		    <fileset dir="${gen.dir}" includes="*.war" />
+	        </pathconvert>
+	        <available property="copied.awsi.war" file="${copied.war.location}" type="file" />
+	</target>
+	
+	<target name="awsi-war-classpath" depends="validate-war">
+		<unjar src="${awsi.war.location}" dest="${gen.dir}/_LIB_">
+			<patternset>
+				<include name="**/lib/*.jar"/>
+			</patternset>
+    	</unjar>
+    </target> 
+    
+    
+	<!-- = = = = = = = = = = = = = = = = =
+	     macrodef: ws-gen-desc          
+	= = = = = = = = = = = = = = = = = = -->
+	<macrodef name="ws-gen-desc">
+		<attribute name="desc" />
+		<attribute name="args" />
+		<sequential>
+			<echo>==================================</echo>
+			<echo>descriptor: @{desc}</echo>
+			<echo>==================================</echo>
+			<java classname="amdocs.awsi.generator.WSBuilder" fork="true" failonerror="true">
+				<arg line="@{args}" />
+				<classpath>
+					<path refid="cp" />
+				</classpath>
+				<jvmarg line="${aif.ws.gen.jvmargs}"/>
+			</java>
+		</sequential>
+	</macrodef>
+	
+	<!-- = = = = = = = = = = = = = = = = =
+	     macrodef: ws-gen-client         
+	= = = = = = = = = = = = = = = = = = -->
+	<macrodef name="ws-gen-client">
+		<attribute name="wsjar" />
+		<attribute name="wsdl" />
+		<attribute name="args" />
+		<attribute name="tempWsdlDir" />
+		<sequential>
+			<echo>==================================</echo>
+			<echo>extracting wsdl: @{wsdl}</echo>
+			<echo>==================================</echo>
+	        <unjar src="@{wsjar}" dest="${gen.dir}">
+	           <patternset>
+			   <include name="**/*.wsdl"/>
+			   <include name="**/*.xsd"/>
+	           </patternset>
+	        </unjar>
+            <echo>==================================</echo>
+            <echo>client jar generation for wsdl: @{wsdl}</echo>
+            <echo>==================================</echo>
+            <java classname="amdocs.awsi.generator.WSBuilder" fork="true">
+                    <arg line="@{args}" />
+                    <classpath><fileset dir="${gen.dir}/_LIB_"/></classpath>
+                    <jvmarg line="${aif.ws.gen.client.jvmargs}"/>
+            </java>
+        </sequential>
+    </macrodef>
+	
+	<!-- = = = = = = = = = = = = = = = = =
+	     macrodef: ws-sim        
+	= = = = = = = = = = = = = = = = = = -->
+	<macrodef name="ws-sim">
+		<attribute name="id" />
+		<attribute name="args" />
+		<sequential>
+			<echo>==================================</echo>
+			<echo>parsing simulation file for interface : @{id}</echo>
+			<echo>==================================</echo>
+			<java classname="com.amdocs.aif.genmodel.AIFSimulationConverter" fork="true">
+				<arg line="@{args}" />
+				<classpath>
+					<path refid="cp" />
+				</classpath>
+			</java>
+		</sequential>
+	</macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+	     macrodef: add-soap-jms        
+	= = = = = = = = = = = = = = = = = = -->
+	<macrodef name="add-soap-jms">
+		<attribute name="wsdl" />
+		<attribute name="outdir"/>
+		<attribute name="baseIntfName"/>
+		<sequential>
+  		  <echo>==================================</echo>
+		  <echo>Adding JMS Bindings:</echo>
+		  <echo>==================================</echo>
+		  <echo>  Standard (W3C) SOAP-JMS WSDL format: </echo>
+	   	  <wsdl_jmsbinder 
+	   		  ascRootFile="${asc.file}"
+	   		  ascRootNode="${asc.node}"
+		      originalWsdlUri="@{wsdl}"
+		      resultingWsdlFile="@{outdir}/@{baseIntfName}_JMS_W3C.wsdl"
+	   		  jmsFlavor="W3C"
+	   	      />
+	   	  <echo>  Weblogic SOAP-JMS WSDL format: </echo>
+	   	  <wsdl_jmsbinder 
+	   		  ascRootFile="${asc.file}"
+	   		  ascRootNode="${asc.node}"
+		      originalWsdlUri="@{wsdl}"
+		      resultingWsdlFile="@{outdir}/@{baseIntfName}_JMS_WL.wsdl"
+	   		  jmsFlavor="Weblogic"
+	   	      />
+	   	  <echo>  Websphere SOAP-JMS WSDL format: </echo>
+	   	  <wsdl_jmsbinder 
+	   		  ascRootFile="${asc.file}"
+	   		  ascRootNode="${asc.node}"
+		      originalWsdlUri="@{wsdl}"
+		      resultingWsdlFile="@{outdir}/@{baseIntfName}_JMS_WAS.wsdl"
+	   		  jmsFlavor="WAS"
+	   	      />
+	   	</sequential>
+	</macrodef>
+	
+	<!-- ===============================
+	     target: all                      
+	====================================  -->
+	<target name="all" depends="gen,deploy" description="generates and deploy generated ws jar(s) into awsi web application"/>
+	
+	<!-- ===============================
+	     target: gen                    
+	====================================  -->
+	<target name="gen" depends="awsi-war-classpath" description="generate a web service jar">
+	</target>
+	
+	<!-- ===============================
+	     target: wsdl_gen                    
+	====================================  -->
+	<target name="wsdl_gen" description="generates a web service wsdl file">
+	</target>
+	
+	
+	<!-- =============================== 
+	     target: deploy.next                      
+	====================================  -->
+	<target name="deploy.next"  if="precopied.awsi.war" description="deploy generated ws jar(s) into awsi web application">
+      <awsi_deploy awsiwar="${copied.war.location}">
+			<components>
+				<fileset dir="${gen.dir}" includes="*.jar" excludes="*_ws_client.jar"/>
+			</components>
+			<classpath refid="cp" />
+		</awsi_deploy>
+	</target>
+	<!-- =============================== 
+	     target: deploy                      
+	====================================  -->
+	
+	<target name="deploy" depends="" if="copied.awsi.war" description="deploy generated ws jar(s) into awsi web application">
+                <awsi_deploy awsiwar="${copied.war.location}">
+			<components>
+				<fileset dir="${gen.dir}" includes="*.jar" excludes="*_ws_client.jar"/>
+			</components>
+			<classpath refid="cp" />
+		</awsi_deploy>
+	</target>
+
+	<!-- =============================== 
+	     target: undeploy                      
+	====================================  -->
+	<target name="undeploy" if="precopied.awsi.war" description="undeploy generated ws jar(s) from awsi web application">
+		<awsi_undeploy awsiwar="${precopied.war.location}">
+			<components>
+				<fileset dir="${gen.dir}" includes="*.jar" />
+			</components>
+			<classpath refid="cp" />
+		</awsi_undeploy>
+	</target>
+	
+	<!-- =============================== 
+	     target: simulate                      
+	====================================  -->
+	<target name="simulate" description="convert aif operation simulation values into awsi generated simulation file">
+	</target>
+</project>

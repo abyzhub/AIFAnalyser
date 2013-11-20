@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operation Version="2.0" Description="" BaseCustomizationLevel="0" CustomizationLevel="0" ProviderProfile="None" Category="" OperationInputsClassName="com.amdocs.bss.tool.AifAnalyser.AifAnalyserAnalyseListInputs" OperationResultsClassName="com.amdocs.bss.tool.AifAnalyser.AifAnalyserAnalyseListResults" CustomParamClassNames="true" BeginConversation="false" Status="DRAFT" ExecutionPolicy="" SamServiceName="" Release="" DeprecatedSinceRelease="" DeprecatedDescription="" BulkOperation="false" BulkOperationId="" CompatibilityHandlerClassName="">
+  <Properties />
+  <Inputs>
+    <Input Name="User" Description="" Usage="Optional" DefaultValue="" DataType="java.lang.String" CustomizationLevel="0" BaseCustomizationLevel="0" ExternalType="false">
+      <Properties />
+    </Input>
+    <Input Name="Password" Description="" Usage="Optional" DefaultValue="" DataType="java.lang.String" CustomizationLevel="0" BaseCustomizationLevel="0" ExternalType="false">
+      <Properties />
+    </Input>
+    <Input Name="Url" Description="" Usage="Optional" DefaultValue="" DataType="java.lang.String" CustomizationLevel="0" BaseCustomizationLevel="0" ExternalType="false">
+      <Properties />
+    </Input>
+  </Inputs>
+  <Outputs>
+    <Output Name="OperationArray" Description="" Usage="Optional" DefaultValue="" DataType="com.amdocs.bss.tool.AifAnalyser.OperationDetails[]" CustomizationLevel="0" BaseCustomizationLevel="0" ExternalType="false" SimulationExpr="" AsyncOutput="false">
+      <Properties />
+    </Output>
+  </Outputs>
+  <Faults />
+  <Bindings>
+    <CustomAdapterBinding ClassName="com.amdocs.bss.tool.AifAnalyser.XAnalyseList" ServiceName="PojoAdapter" ResourceName="" Category="" CustomizationLevel="0" BaseCustomizationLevel="0" />
+  </Bindings>
+  <Implementations>
+    <Implementation Name="Default" Configured="false" ServiceName="" CustomizationLevel="0" BaseCustomizationLevel="0" />
+  </Implementations>
+  <GenerationData>
+    <Artifacts>
+      <Artifact Type="AIF" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes />
+      </Artifact>
+      <Artifact Type="BusinessInterface" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes />
+      </Artifact>
+      <Artifact Type="ParamsBlockInputs" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes>
+          <Attribute Name="className" CustomizationLevel="0" BaseCustomizationLevel="0">com.amdocs.bss.tool.AifAnalyser.AifAnalyserAnalyseListInputs</Attribute>
+          <Attribute Name="useDefaultClassName" CustomizationLevel="0" BaseCustomizationLevel="0">true</Attribute>
+        </Attributes>
+      </Artifact>
+      <Artifact Type="ParamsBlockResults" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes>
+          <Attribute Name="className" CustomizationLevel="0" BaseCustomizationLevel="0">com.amdocs.bss.tool.AifAnalyser.AifAnalyserAnalyseListResults</Attribute>
+          <Attribute Name="useDefaultClassName" CustomizationLevel="0" BaseCustomizationLevel="0">true</Attribute>
+        </Attributes>
+      </Artifact>
+    </Artifacts>
+  </GenerationData>
+  <AuxInterfaces />
+</Operation>
+

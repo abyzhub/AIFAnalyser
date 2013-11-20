@@ -1,0 +1,51 @@
+<project name="ws-project-build" basedir="." default="all">
+        <description>
+        This build file generate web service(s) and depoly/undeply to awsi web application.
+    
+        Targets:
+            - all
+                   - gen
+                   -pack
+        </description>
+        <!-- generation jvmargs defenitions overided by system property -->
+        <property name="aif.ws.gen.jvmargs" value=""/>
+        <property name="aif.ws.gen.client.jvmargs" value=""/>
+
+        <property name="out.dir" value="${basedir}" />
+        <property name="src.dir" value="C:\Users\arai\git\AIFAnalyser\AifAnalyser\gen"/>
+        <property name="gen.temp.dir" value="${basedir}/__TEMP_" />
+        <property name="src.jar.name" value="WEB_SERVICES_src.jar" />
+
+
+        <path id="cp">
+          <!-- auto generated classpath -->
+          <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\bin" />
+          <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\AmdocsAif.jar" />
+          <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\crm-h2-dbdata_778.jar" />
+          <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\crm-junit4-v1.0.44.jar" />
+          <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\AmdocsCore.jar" />
+          <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\ClfyXvo.jar" />
+          <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\UIFCommon.jar" />
+          <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\ClfyWebInf.jar" />
+          <pathelement location="C:\Users\arai\git\AIFAnalyser\AifAnalyser\lib\ClfyCore.jar" />
+          <pathelement location="C:\Users\arai\workspace\TKSBE\ClfyAgent\xml-apis.jar" />
+          <pathelement location="C:\Users\arai\workspace\TKSBE\ClfyAgent\acfglib.jar" />
+        </path>
+ 
+                  <!-- ===============================
+             target: all
+                ====================================  -->
+                <target name="all" depends="gen" description="verifying required libs"/>
+
+                <target name="gen">
+           <echo>
+           **************************************************************************************************************
+             Missing or invalid library for using the weblogic.wsee.tools.anttasks.JwscTask ANT task
+             You must set a valid build path in the project settings
+             and regenerate this ANT script artifact again to include the required library
+           **************************************************************************************************************
+           </echo>
+           <fail message="Missing libraries to run the weblogic.wsee.tools.anttasks.JwscTask ANT TASK . Please see detailed message above "/>
+        </target>
+         
+</project>

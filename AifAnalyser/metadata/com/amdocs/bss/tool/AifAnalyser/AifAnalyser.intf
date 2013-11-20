@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interface Version="2.0" Description="" BaseCustomizationLevel="0" CustomizationLevel="0" Category="" BusinessInterfaceName="com.amdocs.bss.tool.AifAnalyser.AifAnalyser" Conversational="false" ConversationClassName="com.amdocs.bss.tool.AifAnalyserConversation" PrimaryProvider="UNKNOWN" ProviderProfile="None" Release="" SinceRelease="" abstract="false" DefaultServiceName="PojoAdapter" CompatibilityHandlerClassName="">
+  <Properties />
+  <Services>
+    <Service Name="PojoAdapter" ResourceName="" ArtifactProvider="" CustomizationLevel="0" BaseCustomizationLevel="0" />
+  </Services>
+  <GenerationData>
+    <Artifacts>
+      <Artifact Type="AIF" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes />
+      </Artifact>
+      <Artifact Type="BusinessInterface" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes>
+          <Attribute Name="className" CustomizationLevel="0" BaseCustomizationLevel="0">com.amdocs.bss.tool.AifAnalyser.AifAnalyser</Attribute>
+          <Attribute Name="useDefaultClassName" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+        </Attributes>
+      </Artifact>
+    </Artifacts>
+  </GenerationData>
+  <ExtendedInterfaces />
+  <InheritedOperations />
+</Interface>
+

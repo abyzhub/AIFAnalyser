@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<ejbbnd:EJBJarBinding xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:common="common.xmi" xmlns:ejbbnd="ejbbnd.xmi" xmlns:ejb="ejb.xmi" xmi:id="EJBJarBinding">
+  <ejbJar href="META-INF/ejb-jar.xml#ejb-jar_project"/>
+
+</ejbbnd:EJBJarBinding>

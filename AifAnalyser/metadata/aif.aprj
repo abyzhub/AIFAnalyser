@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AifProject Version="2.0" Description="" BaseCustomizationLevel="0" CustomizationLevel="0">
+  <GenerationData>
+    <Artifacts>
+      <Artifact Type="EJB" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes>
+          <Attribute Name="adminRole" CustomizationLevel="0" BaseCustomizationLevel="0">true</Attribute>
+        </Attributes>
+      </Artifact>
+      <Artifact Type="ProjectLevelDeploymentDescriptors" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes />
+      </Artifact>
+      <Artifact Type="ProjectLevelEjbJarXml" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes />
+      </Artifact>
+      <Artifact Type="ProjectLevelWeblogicEjbJarXml" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes />
+      </Artifact>
+      <Artifact Type="ProjectLevelIbmEjbJarBndXmi" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes />
+      </Artifact>
+      <Artifact Type="ProjectLevelAmdocsSecurityDescriptor" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes />
+      </Artifact>
+      <Artifact Type="WebService" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes />
+      </Artifact>
+      <Artifact Type="AWSI" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes />
+      </Artifact>
+      <Artifact Type="ProjectLevelWSProvider" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes>
+          <Attribute Name="addNamespaceSuffix" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+          <Attribute Name="useServiceNameAsPortType" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+          <Attribute Name="suppressArrayOf" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+          <Attribute Name="splitWsdlFile" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+          <Attribute Name="splitMessagesXsd" CustomizationLevel="0" BaseCustomizationLevel="0">true</Attribute>
+          <Attribute Name="generateSchemaPrefix" CustomizationLevel="0" BaseCustomizationLevel="0">true</Attribute>
+          <Attribute Name="regenerateCommonXsd" CustomizationLevel="0" BaseCustomizationLevel="0">true</Attribute>
+          <Attribute Name="useSharedLocation" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+          <Attribute Name="wsdlOutputPath" CustomizationLevel="0" BaseCustomizationLevel="0" />
+          <Attribute Name="relativeSchemaLocation" CustomizationLevel="0" BaseCustomizationLevel="0" />
+        </Attributes>
+      </Artifact>
+      <Artifact Type="ProjectLevelWSProviderANTScript" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes>
+          <Attribute Name="generateServerSimulator" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+          <Attribute Name="generateTestClient" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+          <Attribute Name="generateRuntimeTestClient" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+          <Attribute Name="avoidGeneratingFullTestClient" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+          <Attribute Name="addJmsBinding" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+          <Attribute Name="keepGeneratedCode" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+          <Attribute Name="useGlobalDescriptor" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+          <Attribute Name="globalDescriptor" CustomizationLevel="0" BaseCustomizationLevel="0" />
+          <Attribute Name="addDocumentationElements" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+          <Attribute Name="documentationSource" CustomizationLevel="0" BaseCustomizationLevel="0" />
+        </Attributes>
+      </Artifact>
+      <Artifact Type="JAXWS" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes>
+          <Attribute Name="webApplicationContextPath" CustomizationLevel="0" BaseCustomizationLevel="0">WEB_SERVICES</Attribute>
+          <Attribute Name="warFileName" CustomizationLevel="0" BaseCustomizationLevel="0">WEB_SERVICES</Attribute>
+          <Attribute Name="keepGeneratedSources" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+          <Attribute Name="controllerName" CustomizationLevel="0" BaseCustomizationLevel="0" />
+          <Attribute Name="generatePackageNamespace" CustomizationLevel="0" BaseCustomizationLevel="0">false</Attribute>
+        </Attributes>
+      </Artifact>
+      <Artifact Type="WebLogicWSProvider" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes />
+      </Artifact>
+      <Artifact Type="ProjectLevelWebLogicWSProviderANTScript" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes />
+      </Artifact>
+      <Artifact Type="WebSphereWSProvider" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes />
+      </Artifact>
+      <Artifact Type="ProjectLevelWebSphereWSProviderANTScript" Selected="true" CustomizationLevel="0" BaseCustomizationLevel="0">
+        <Attributes />
+      </Artifact>
+    </Artifacts>
+  </GenerationData>
+</AifProject>
+

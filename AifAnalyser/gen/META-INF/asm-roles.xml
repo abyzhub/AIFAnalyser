@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE uamsObjects[
+<!ELEMENT uamsObjects (type+)>
+<!ELEMENT type (uamsObject+)>
+<!ELEMENT uamsObject (objName, className, attributeList?, propertyList?)>
+<!ELEMENT propertyList (property*)>
+<!ELEMENT attributeList (attribute*)>
+<!ELEMENT attribute (key, datatype, value)>
+<!ELEMENT property (key, datatype, value)>
+<!ELEMENT value (#PCDATA | array | uamsObject)*>
+<!ELEMENT key (#PCDATA)>
+<!ELEMENT className (#PCDATA)>
+<!ELEMENT objName (#PCDATA)>
+<!ELEMENT datatype (#PCDATA)>
+<!ELEMENT array (array-entry*)>
+<!ELEMENT array-entry (value*)>
+<!ATTLIST type name CDATA #REQUIRED>
+<!ATTLIST property mandatory (true | false) "true">
+<!ATTLIST attribute mandatory (true | false) "true">
+<!ATTLIST property trim (true | false) "true">
+]>
+<uamsObjects>
+	<type name="amdocs.uams.UamsRole"/>
+ 
+ 
+</uamsObjects>
+
